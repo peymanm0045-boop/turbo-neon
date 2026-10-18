@@ -66,7 +66,13 @@ bun run build      # یا npm run build
 2. از منوی کروم (⋮) گزینه **«Add to Home screen»** را بزنید
 3. بازی به‌صورت اپلیکیشن تمام‌صفحه روی گوشی شما نصب می‌شود 🎉
 
-## 📦 دانلود فایل APK (خودکار با GitHub Actions)
+## 📦 دانلود فایل APK
+
+### ⬇️ دانلود مستقیم (سریع‌ترین راه)
+
+> **[دانلود TurboNeon-debug.apk از Releases](https://github.com/peymanm0045-boop/turbo-neon/releases/latest)** — فایل را دانلود و روی گوشی نصب کنید (اجازه «نصب از منابع ناشناس» را بدهید).
+
+### 🤖 ساخت خودکار با GitHub Actions
 
 این ریپو دارای **GitHub Actions workflow** است که با هر تغییر، فایل APK اندروید را به‌صورت خودکار build می‌کند:
 
