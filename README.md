@@ -1,6 +1,8 @@
 # 🏎️ توربو نئون | Neon Turbo GP
 
-> بازی مسابقه‌ای سه‌بعدی با ۱۰ ماشین اسپرت منحصربه‌فرد، ۲ پیست حرفه‌ای و ۹ حریف هوش‌مصنوعی — ساخته‌شده با **Next.js + Three.js** و قابل نصب روی **اندروید** به‌صورت PWA
+[![Build Android APK](https://github.com/peymanm0045-boop/turbo-neon/actions/workflows/build-apk.yml/badge.svg)](https://github.com/peymanm0045-boop/turbo-neon/actions/workflows/build-apk.yml)
+
+> بازی مسابقه‌ای سه‌بعدی با ۱۰ ماشین اسپرت منحصربه‌فرد، ۲ پیست حرفه‌ای و ۹ حریف هوش‌مصنوعی — ساخته‌شده با **Next.js + Three.js** و قابل نصب روی **اندروید** به‌صورت PWA یا APK
 
 <div dir="rtl">
 
@@ -64,7 +66,37 @@ bun run build      # یا npm run build
 2. از منوی کروم (⋮) گزینه **«Add to Home screen»** را بزنید
 3. بازی به‌صورت اپلیکیشن تمام‌صفحه روی گوشی شما نصب می‌شود 🎉
 
-> 💡 برای ساخت APK می‌توانید از ابزارهایی مثل [PWABuilder](https://www.pwabuilder.com/) یا [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) استفاده کنید — این پروژه کاملاً سازگار با PWA است.
+## 📦 دانلود فایل APK (خودکار با GitHub Actions)
+
+این ریپو دارای **GitHub Actions workflow** است که با هر تغییر، فایل APK اندروید را به‌صورت خودکار build می‌کند:
+
+1. به تب **[Actions](https://github.com/peymanm0045-boop/turbo-neon/actions)** بروید
+2. روی آخرین run موفق **«Build Android APK»** کلیک کنید
+3. از بخش **Artifacts** فایل **TurboNeon-APK** را دانلود کنید
+4. فایل ZIP دانلودی را باز کنید و `TurboNeon-debug.apk` را روی گوشی نصب کنید (اجازه «نصب از منابع ناشناس» را بدهید)
+
+> 💡 می‌توانید از تب Actions دکمه **«Run workflow»** را بزنید تا دستی APK جدید ساخته شود.
+>
+> 🏷️ با زدن تگ نسخه (مثلاً `v1.0.0`) فایل APK مستقیماً در بخش **Releases** هم قرار می‌گیرد.
+
+### ویژگی‌های نسخه APK
+
+- ✅ **تمام‌صفحه Immersive** — بدون نوار وضعیت و دکمه‌های ناوبری
+- ✅ **قفل افقی** — همیشه در حالت landscape اجرا می‌شود
+- ✅ **آفلاین** — بازی کاملاً داخل APK قرار دارد، بدون نیاز به اینترنت
+- ✅ آیکون اختصاصی نئونی
+
+### ساخت APK به‌صورت محلی (اختیاری)
+
+```bash
+bun install                 # یا npm install
+bun run build:static        # خروجی استاتیک در out/
+npx cap sync android        # کپی assets به پروژه اندروید
+cd android && ./gradlew assembleDebug
+# APK: android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+> 💡 برای ساخت APK می‌توانید از ابزارهایی مثل [PWABuilder](https://www.pwabuilder.com/) یا [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) هم استفاده کنید — این پروژه کاملاً سازگار با PWA است.
 
 ## 🎮 کنترل‌ها
 
@@ -80,6 +112,7 @@ bun run build      # یا npm run build
 
 - **Next.js 16** — فریم‌ورک اصلی (App Router)
 - **Three.js 186** — رندر سه‌بعدی WebGL
+- **Capacitor 8** — پکیج‌بندی APK اندروید
 - **TypeScript** — تایپ‌سیف کامل
 - **Tailwind CSS 4 + shadcn/ui** — رابط کاربری
 - **WebAudio API** — صدای پروسیجرال
@@ -98,8 +131,11 @@ src/
 │   ├── Hud.tsx          # سرعت‌سنج، کنترل لمسی، توقف/نتایج
 │   ├── MenuScreens.tsx  # منوها (فارسی RTL)
 │   └── CarPreview.tsx   # شوئ‌روم سه‌بعدی گاراژ
-└── app/
-    └── page.tsx     # نقطه ورود بازی
+├── app/
+│   └── page.tsx     # نقطه ورود بازی
+└── .github/workflows/
+    └── build-apk.yml    # ساخت خودکار APK اندروید
+android/                 # پروژه اندروید (Capacitor)
 ```
 
 ## 📄 لایسنس
